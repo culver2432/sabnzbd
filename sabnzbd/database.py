@@ -371,7 +371,7 @@ class HistoryDB(object):
         if self.execute('SELECT name FROM history WHERE nzo_id=?', t):
             try:
                 name = self.c.fetchone().get('name')
-            except AttributeError:
+            except:
                 pass
         return name
 
@@ -382,7 +382,7 @@ class HistoryDB(object):
         if self.execute('SELECT path FROM history WHERE nzo_id=?', t):
             try:
                 path = self.c.fetchone().get('path')
-            except AttributeError:
+            except:
                 pass
         return path
 
@@ -397,7 +397,7 @@ class HistoryDB(object):
                 pp = items.get('pp')
                 script = items.get('script')
                 cat = items.get('category')
-            except AttributeError:
+            except:
                 return '', '', '', '', ''
         return dtype, url, pp, script, cat
 
