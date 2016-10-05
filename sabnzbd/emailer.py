@@ -112,7 +112,7 @@ def send(message, email_to, test=None):
         # Authentication
         if (email_account != "") and (email_pwd != ""):
             try:
-                mailconn.login(email_account, email_pwd)
+                mailconn.login(email_account.encode('utf-8'), email_pwd.encode('utf-8'))
             except smtplib.SMTPHeloError:
                 return errormsg(T("The server didn't reply properly to the helo greeting"))
             except smtplib.SMTPAuthenticationError:
@@ -123,7 +123,7 @@ def send(message, email_to, test=None):
                 return errormsg(T("Unknown authentication failure in mail server"))
 
         try:
-            mailconn.sendmail(email_from, email_to, message)
+            mailconn.sendmail(email_from.encode('utf-8'), email_to.encode('utf-8'), message.encode('utf-8'))
             msg = None
         except smtplib.SMTPHeloError:
             msg = errormsg('The server didn\'t reply properly to the helo greeting.')
